@@ -22,11 +22,13 @@
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// Install app dependencies.
+	// 初回コンテナ作成時にワークスペースがマウントされた後に一度だけ実行（依存ライブラリのインストールなど）。
 	"postCreateCommand": "pip3 install --user -r requirements.txt",
 	// Use 'postAttachCommand' to run commands after a tool has attached to the container.
 	// Start the app.
+	// コンテナの「起動（start）」ごとに実行（開発サーバーの再起動等に利用）。
 	"postAttachCommand": {
-		"server": "streamlit hello --server.enableCORS false --server.enableXsrfProtection false"
+		"server": "streamlit run app.py --server.port 8501 --server.enableCORS false --server.enableXsrfProtection false"
 	},
 	"portsAttributes": {
 		"8501": {
